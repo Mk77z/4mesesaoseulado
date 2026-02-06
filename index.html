@@ -23,46 +23,34 @@
     h1, h2 { margin-bottom: 20px; }
     h1 { font-size: 3rem; }
     h2 { font-size: 2rem; color: #ffb6c1; }
-    p {
-      max-width: 700px;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .btn {
-      padding: 15px 30px;
-      background: #ff4d6d;
-      border: none;
-      border-radius: 30px;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+    p { max-width: 700px; font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px; }
+    .btn { padding: 15px 30px; background: #ff4d6d; border: none; border-radius: 30px; color: #fff; font-size: 1rem; cursor: pointer; transition: 0.3s; }
     .btn:hover { background: #ff758f; }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      width: 100%;
-      max-width: 1000px;
-      margin-top: 40px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      transition: transform 0.3s;
-    }
+
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; width: 100%; max-width: 1000px; margin-top: 40px; }
+    .gallery img { width: 100%; border-radius: 20px; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.4); cursor: pointer; transition: transform .3s; }
     .gallery img:hover { transform: scale(1.05); }
+
     footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.3); }
 
-    /* Typing effect */
     .typing { opacity: 0; animation: fadeIn 1s forwards; }
     .delay { animation-delay: 1.2s; }
     .delay2 { animation-delay: 2.4s; }
     @keyframes fadeIn { to { opacity: 1; } }
+
+    /* Lightbox com efeito de página */
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.9); display: none; align-items: center; justify-content: center; flex-direction: column; z-index: 999; }
+    .lightbox img { max-width: 90%; max-height: 80%; border-radius: 20px; animation: pageFlip .6s ease; }
+    .caption { margin-top: 20px; font-size: 1.1rem; color: #ffb6c1; }
+
+    .nav { position: absolute; top: 50%; font-size: 3rem; color: #fff; cursor: pointer; user-select: none; padding: 20px; }
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    @keyframes pageFlip {
+      from { transform: rotateY(90deg); opacity: 0; }
+      to { transform: rotateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -87,11 +75,18 @@
     <h2>Nossos Momentos 📸</h2>
     <p>Aqui ficam registrados alguns dos momentos mais especiais que vivemos juntos.</p>
     <div class="gallery">
-      <img src="foto1.jpg" alt="Um dos nossos primeiros momentos juntos">
-      <img src="foto2.jpg" alt="Risadas e leveza ao seu lado">
-      <img src="foto3.jpg" alt="Seu sorriso é meu lugar favorito">
-      <img src="foto4.jpg" alt="Momentos simples que viram eternos">
-      <img src="foto5.jpg" alt="Orgulho de caminhar ao seu lado">
+      <img src="foto1.jpg" data-caption="Nosso começo, onde tudo passou a fazer sentido" onclick="openLightbox(0)">
+      <img src="foto2.jpg" data-caption="Sorrisos que viraram rotina" onclick="openLightbox(1)">
+      <img src="foto3.jpg" data-caption="Meu lugar favorito é ao seu lado" onclick="openLightbox(2)">
+      <img src="foto4.jpg" data-caption="Momentos simples, amor verdadeiro" onclick="openLightbox(3)">
+      <img src="foto5.jpg" data-caption="Cada detalhe seu me encanta" onclick="openLightbox(4)">
+      <img src="foto6.jpg" data-caption="Mais uma memória que guardo no coração" onclick="openLightbox(5)">
+      <img src="foto7.jpg" data-caption="Com você tudo fica mais leve" onclick="openLightbox(6)">
+      <img src="foto8.jpg" data-caption="Nosso amor em pequenos instantes" onclick="openLightbox(7)">
+      <img src="foto9.jpg" data-caption="Você é meu melhor capítulo" onclick="openLightbox(8)">
+      <img src="foto10.jpg" data-caption="Entre risos, carinhos e nós dois" onclick="openLightbox(9)">
+      <img src="foto11.jpg" data-caption="Cada foto, um sentimento" onclick="openLightbox(10)">
+      <img src="foto12.jpg" data-caption="E que venham muitos outros momentos assim" onclick="openLightbox(11)">
     </div>
   </section>
 
@@ -111,12 +106,47 @@
   </audio>
 
   <script>
+    const images = Array.from(document.querySelectorAll('.gallery img'));
+    let currentIndex = 0;
+
     function ativarMusica() {
       const audio = document.getElementById('musica');
       audio.volume = 0.5;
       audio.play();
     }
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    function changeImage(step) {
+      currentIndex = (currentIndex + step + images.length) % images.length;
+      updateLightbox();
+    }
+
+    function updateLightbox() {
+      const img = images[currentIndex];
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('caption').innerText = img.dataset.caption;
+    }
   </script>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="">
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="nav prev" onclick="event.stopPropagation(); changeImage(-1)">❮</span>
+    <img id="lightbox-img" src="">
+    <span class="nav next" onclick="event.stopPropagation(); changeImage(1)">❯</span>
+    <div class="caption" id="caption"></div>
+  </div>
 
 </body>
 </html>
