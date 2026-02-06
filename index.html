@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4 Meses ao Seu Lado 💖</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    section {
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    h1, h2 { margin-bottom: 20px; }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2rem; color: #ffb6c1; }
+    p {
+      max-width: 700px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 15px 30px;
+      background: #ff4d6d;
+      border: none;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #ff758f; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 40px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+    footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.3); }
+
+    /* Typing effect */
+    .typing { opacity: 0; animation: fadeIn 1s forwards; }
+    .delay { animation-delay: 1.2s; }
+    .delay2 { animation-delay: 2.4s; }
+    @keyframes fadeIn { to { opacity: 1; } }
+  </style>
+</head>
+<body>
+
+  <section id="inicio" style="background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('foto1.jpg') center/cover no-repeat;">
+    <h1 class="typing">4 Meses ao Seu Lado 💖</h1>
+    <p class="typing delay">Desde <strong>08/10/2025</strong>, minha vida ficou mais leve por ter você comigo.</p>
+    <p class="typing delay2"><em>“Te amo muito minha princesa.”</em></p>
+
+    <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:20px;">
+      <button class="btn" onclick="ativarMusica()">🔊 Ativar música</button>
+      <button class="btn" onclick="document.getElementById('historia').scrollIntoView({behavior:'smooth'})">Começar</button>
+    </div>
+  </section>
+
+  <section id="historia">
+    <h2>Nossa História</h2>
+    <p>Desde o dia em que nos conhecemos, tudo mudou. Em 4 meses construímos memórias, risadas, carinho e um amor que cresce a cada dia.</p>
+  </section>
+
+  <section id="momentos">
+    <h2>Nossos Momentos 📸</h2>
+    <p>Aqui ficam registrados alguns dos momentos mais especiais que vivemos juntos.</p>
+    <div class="gallery">
+      <img src="foto1.jpg" alt="Um dos nossos primeiros momentos juntos">
+      <img src="foto2.jpg" alt="Risadas e leveza ao seu lado">
+      <img src="foto3.jpg" alt="Seu sorriso é meu lugar favorito">
+      <img src="foto4.jpg" alt="Momentos simples que viram eternos">
+      <img src="foto5.jpg" alt="Orgulho de caminhar ao seu lado">
+    </div>
+  </section>
+
+  <section id="mensagem">
+    <h2>Pra Você ❤️</h2>
+    <p>Obrigado por ser quem você é, por cuidar de mim e por caminhar comigo. Que esse seja apenas o começo de uma história linda que ainda vamos viver.</p>
+    <p><strong>Eu te amo.</strong></p>
+  </section>
+
+  <footer>
+    <p>4mesesaoseulado.com • Feito com amor 💕</p>
+  </footer>
+
+  <!-- Música de fundo -->
+  <audio id="musica" loop>
+    <source src="amor-e-fe.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function ativarMusica() {
+      const audio = document.getElementById('musica');
+      audio.volume = 0.5;
+      audio.play();
+    }
+  </script>
+
+</body>
+</html>
