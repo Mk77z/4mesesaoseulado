@@ -90,11 +90,20 @@
     </div>
   </section>
 
-  <section id="mensagem">
-    <h2>Pra Você ❤️</h2>
-    <p>Obrigado por ser quem você é, por cuidar de mim e por caminhar comigo. Que esse seja apenas o começo de uma história linda que ainda vamos viver.</p>
-    <p><strong>Eu te amo.</strong></p>
-  </section>
+  <section id="interacoes">
+  <h2>Explore 💖</h2>
+  <p>Cada botão guarda um pedacinho do que sinto por você.</p>
+
+  <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:30px;">
+    <button class="btn" onclick="abrirCarta()">💌 Leia quando quiser se sentir amada</button>
+    <button class="btn" onclick="textoAleatorio()">💭 Clique aqui</button>
+    <button class="btn" onclick="abrirSurpresa()">🎁 Não clique</button>
+    <button class="btn" onclick="mostrarContador()">⏳ Nosso tempo juntos</button>
+  </div>
+
+  <p id="texto-dinamico" style="margin-top:25px; font-size:1.3rem; color:#ffb6c1;"></p>
+  <p id="contador" style="margin-top:15px;"></p>
+</section>
 
   <footer>
     <p>4mesesaoseulado.com • Feito com amor 💕</p>
@@ -134,6 +143,36 @@
       const img = images[currentIndex];
       document.getElementById('lightbox-img').src = img.src;
       document.getElementById('caption').innerText = img.dataset.caption;
+    }
+
+    // Interações românticas
+    const frases = [
+      'Eu te amo mais do que palavras conseguem dizer.',
+      'Você é meu lugar seguro.',
+      'Tenho orgulho de você todos os dias.',
+      'Você é minha princesa.',
+      'Obrigado por existir na minha vida.'
+    ];
+
+    function textoAleatorio() {
+      const random = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById('texto-dinamico').innerText = random;
+    }
+
+    function abrirCarta() {
+      alert('Se você está lendo isso, saiba que cada detalhe desse site foi feito pensando em você. Obrigado por estar ao meu lado e por tornar meus dias mais felizes. Eu te amo, minha princesa.');
+    }
+
+    function abrirSurpresa() {
+      alert('Surpresa 😳💖
+Você é o melhor acontecimento da minha vida!');
+    }
+
+    function mostrarContador() {
+      const inicio = new Date('2025-10-08');
+      const hoje = new Date();
+      const diff = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
+      document.getElementById('contador').innerText = `Já se passaram ${diff} dias ao seu lado 💕`;
     }
   </script>
 
